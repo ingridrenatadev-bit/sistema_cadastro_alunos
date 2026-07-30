@@ -3,7 +3,7 @@
 struct Aluno {
 
     char nome[30];
-    float nota[2];
+    float nota[3];
 };
 
 struct Aluno lista_alunos[30];
@@ -17,7 +17,7 @@ void cadastrar_aluno(){
 
     for(int i = 0; i < notas; i++){
         printf("Digite a nota %d: ", i + 1);
-        scanf("%f", &lista_alunos->nota[i]);
+        scanf("%f", &lista_alunos[total_alunos].nota[i]);
     }
 
     total_alunos++;
@@ -26,12 +26,11 @@ void cadastrar_aluno(){
 
 
 void listar_aluno(){
-    printf("-----LISTA DE ALUNOS CADASTRADOS----\n");
+    printf("\n\n-----LISTA DE ALUNOS CADASTRADOS----\n\n");
 
     for(int i = 0; i < total_alunos; i++){
         printf("%d - Nome: %s | Notas: %.2f, %.2f, %.2f\n", i + 1,  lista_alunos[i].nome, lista_alunos[i].nota[0], lista_alunos[i].nota[1], lista_alunos[i].nota[2]);
     }
-    total_alunos++;
 }
 
 
@@ -57,7 +56,7 @@ int main(){
         }
 
         if(opcao_usuario == 1){
-            cadastrar_aluno(lista_alunos);
+            cadastrar_aluno();
             printf("Credenciamento concluído!\n");
             continue;
         }
@@ -77,7 +76,8 @@ int main(){
             }
 
             listar_aluno();
-
+            printf("\n\nListagem concluída %d/%d\n\n", total_alunos, total_alunos);
+            continue;
         }
     
     }
