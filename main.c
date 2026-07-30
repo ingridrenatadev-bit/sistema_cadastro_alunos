@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 struct Aluno {
 
     char nome[30];
@@ -10,6 +9,10 @@ struct Aluno lista_alunos[30];
 int total_alunos = 0;
 int notas = 3;
 
+float calcular_media_individual(float nota1, float nota2, float nota3){
+    return (nota1 + nota2 + nota3) / 3.0;
+}
+
 void cadastrar_aluno(){
     
     printf("Digite o nome do aluno: ");
@@ -19,7 +22,6 @@ void cadastrar_aluno(){
         printf("Digite a nota %d: ", i + 1);
         scanf("%f", &lista_alunos[total_alunos].nota[i]);
     }
-
     total_alunos++;
     printf("Aluno cadastrado com sucesso!\n");
 }
@@ -28,8 +30,15 @@ void cadastrar_aluno(){
 void listar_aluno(){
     printf("\n\n-----LISTA DE ALUNOS CADASTRADOS----\n\n");
 
-    for(int i = 0; i < total_alunos; i++){
-        printf("%d - Nome: %s | Notas: %.2f, %.2f, %.2f\n", i + 1,  lista_alunos[i].nome, lista_alunos[i].nota[0], lista_alunos[i].nota[1], lista_alunos[i].nota[2]);
+    for(int i = 0; i < total_alunos; i++){   
+        printf("%d - Nome: %s | Notas: %.2f, %.2f, %.2f | Media: %.2f \n", 
+            i + 1,  
+            lista_alunos[i].nome, 
+            lista_alunos[i].nota[0], 
+            lista_alunos[i].nota[1], 
+            lista_alunos[i].nota[2], 
+            calcular_media_individual(lista_alunos[i].nota[0], lista_alunos[i].nota[1], lista_alunos[i].nota[2])
+        );
     }
 }
 
