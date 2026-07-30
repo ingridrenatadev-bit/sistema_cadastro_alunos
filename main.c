@@ -14,6 +14,11 @@ float calcular_media_individual(float nota1, float nota2, float nota3){
 }
 
 void cadastrar_aluno(){
+
+    if(total_alunos >= 30){
+        printf("Turma Cheia! Nao eh possivel cadastrar mais de %d alunos.\n", total_alunos);
+        return;
+    }
     
     printf("Digite o nome do aluno: ");
     scanf("%s", lista_alunos[total_alunos].nome);
@@ -85,7 +90,7 @@ int main(){
             }
 
             listar_aluno();
-            printf("\n\nListagem concluída %d/%d\n\n", total_alunos, total_alunos);
+            printf("\n\nListagem concluída (%d alunos)\n\n", total_alunos);
             continue;
         }
     
