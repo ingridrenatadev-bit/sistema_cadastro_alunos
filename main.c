@@ -1,11 +1,12 @@
 #include <stdio.h>
+#define MAX_ALUNOS 30
 struct Aluno {
 
     char nome[30];
     float nota[3];
 };
 
-struct Aluno lista_alunos[30];
+struct Aluno lista_alunos[MAX_ALUNOS];
 int total_alunos = 0;
 int notas = 3;
 
@@ -15,7 +16,7 @@ float calcular_media_individual(float nota1, float nota2, float nota3){
 
 void cadastrar_aluno(){
 
-    if(total_alunos >= 30){
+    if(total_alunos >= MAX_ALUNOS){
         printf("Turma Cheia! Nao eh possivel cadastrar mais de %d alunos.\n", total_alunos);
         return;
     }
