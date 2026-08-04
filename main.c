@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #define MAX_ALUNOS 30
 struct Aluno {
 
@@ -48,6 +49,15 @@ void listar_aluno(){
     }
 }
 
+int buscar_aluno(char buscar_nome[]){
+    for(int i = 0; i < total_alunos; i++){
+        if(strcmp(lista_alunos[i].nome, buscar_nome) == 0){
+            return i;
+        }
+    }
+    return -1;
+}
+
 
 int main(){
     int opcao_usuario;
@@ -91,8 +101,33 @@ int main(){
             }
 
             listar_aluno();
-            printf("\n\nListagem concluída (%d alunos)\n\n", total_alunos);
+            printf("\n\nListagem concluída (%d alunos)\n", total_alunos);
             continue;
+        }
+
+        if (opcao_usuario == 3){//implementar uma funcionalidade se o usuário desejar procurar outro estudante depois
+
+            char buscar_nome[30];
+            printf("\n\nDigite o nome do aluno que deseja procurar: ");
+            scanf("%s", buscar_nome);
+
+            int posicao = buscar_aluno(buscar_nome);
+
+            if(posicao == -1){
+                printf("\nAluno não encontrado!\n");
+            }
+            else{
+                printf("\nAluno encontrado!\n\n===RELATORIO ESTUDANTIL===\n");
+                printf("%d - Nome: %s | Notas: %.2f, %.2f, %.2f | Media: %.2f\n", 
+                    posicao + 1,
+                    lista_alunos[posicao].nome,
+                    lista_alunos[posicao].nota[0],
+                    lista_alunos[posicao].nota[1],
+                    lista_alunos[posicao].nota[2],
+                    calcular_media_individual(lista_alunos[posicao].nota[0], lista_alunos[posicao].nota[1], lista_alunos[posicao].nota[2])
+                );
+            }
+
         }
     
     }
