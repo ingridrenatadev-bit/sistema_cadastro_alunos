@@ -73,10 +73,9 @@ void estatistica_exibir(){
         }
         else{
             reprovados++;
-        }
-
-        printf("\n===ESTATISTICA DA TURMA===\n Total de alunos: %d\n Aprovados: %d\n De recuperação: %d\n Reprovado: %d\n\n", total_alunos, aprovados, recuperacao, reprovados);   
+        }   
     }
+    printf("\n===ESTATISTICA DA TURMA===\n Total de alunos: %d\n Aprovados: %d\n De recuperação: %d\n Reprovado: %d\n\n", total_alunos, aprovados, recuperacao, reprovados);
 }
 
 
