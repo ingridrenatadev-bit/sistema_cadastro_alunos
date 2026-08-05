@@ -107,25 +107,29 @@ int main(){
 
         if (opcao_usuario == 3){//implementar uma funcionalidade se o usuário desejar procurar outro estudante depois
 
-            char buscar_nome[30];
-            printf("\n\nDigite o nome do aluno que deseja procurar: ");
-            scanf("%s", buscar_nome);
+            char continuar_busca = "s";
 
-            int posicao = buscar_aluno(buscar_nome);
+            while (continuar_busca == "s")
+            {
+                char buscar_nome[30];
+                printf("\n\nDigite o nome do aluno que deseja procurar: ");
+                scanf("%s", buscar_nome);
+                int posicao = buscar_aluno(buscar_nome);
 
-            if(posicao == -1){
+                if(posicao == -1){
                 printf("\nAluno não encontrado!\n");
-            }
-            else{
-                printf("\nAluno encontrado!\n\n===RELATORIO ESTUDANTIL===\n");
-                printf("%d - Nome: %s | Notas: %.2f, %.2f, %.2f | Media: %.2f\n", 
-                    posicao + 1,
-                    lista_alunos[posicao].nome,
-                    lista_alunos[posicao].nota[0],
-                    lista_alunos[posicao].nota[1],
-                    lista_alunos[posicao].nota[2],
-                    calcular_media_individual(lista_alunos[posicao].nota[0], lista_alunos[posicao].nota[1], lista_alunos[posicao].nota[2])
-                );
+                }
+                else{
+                    printf("\nAluno encontrado!\n\n===RELATORIO ESTUDANTIL===\n");
+                    printf("%d - Nome: %s | Notas: %.2f, %.2f, %.2f | Media: %.2f\n", 
+                        posicao + 1,
+                        lista_alunos[posicao].nome,
+                        lista_alunos[posicao].nota[0],
+                        lista_alunos[posicao].nota[1],
+                        lista_alunos[posicao].nota[2],
+                        calcular_media_individual(lista_alunos[posicao].nota[0], lista_alunos[posicao].nota[1], lista_alunos[posicao].nota[2])
+                    );
+                }   
             }
 
         }
