@@ -190,10 +190,10 @@ int main(){
             estatistica_exibir();
             continue;
         }
-        
+
         if(opcao_usuario == 5){
             printf("\nEncerrando o sistema de alunos com seguranca. Ate breve!\n");
-            // Qual comando você deve colocar aqui para matar o while(1) ou a main()?
+            break;
         }
     
     }
