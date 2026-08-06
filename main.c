@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+
 #define MAX_ALUNOS 30
 struct Aluno {
 
@@ -152,9 +154,9 @@ int main(){
 
         if (opcao_usuario == 3){//implementar uma funcionalidade se o usuário desejar procurar outro estudante depois
 
-            char continuar_busca = "s";
+            char continuar_busca = 's';
 
-            while (continuar_busca == "s"){
+            while (continuar_busca == 's'){
                 char buscar_nome[30];
                 printf("\n\nDigite o nome do aluno que deseja procurar: ");
                 scanf("%s", buscar_nome);
@@ -174,14 +176,19 @@ int main(){
                         calcular_media_individual(lista_alunos[posicao].nota[0], lista_alunos[posicao].nota[1], lista_alunos[posicao].nota[2])
                     );
                 } 
+
                 
                 if(deseja_sair_busca()){
                     printf("Saindo da barra de pesquisa...\n");
                     break;
                 }
-
             }
 
+        }
+
+        if(opcao_usuario == 4){
+            estatistica_exibir();
+            continue;
         }
     
     }
