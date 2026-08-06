@@ -58,6 +58,51 @@ int buscar_aluno(char buscar_nome[]){
     return -1;
 }
 
+void estatistica_exibir() {
+    if (total_alunos == 0) {
+        printf("\nALERTA: Nao ha alunos cadastrados para gerar estatisticas!\n\n");
+        return;
+    }
+
+    int aprovados = 0, reprovados = 0, recuperacao = 0;
+
+    for(int i = 0; i < total_alunos; i++){
+        float media = calcular_media_individual(lista_alunos[i].nota[0], lista_alunos[i].nota[1], lista_alunos[i].nota[2]);
+
+        if (media >= 7.0){
+            aprovados++;
+        } 
+        else if (media >= 5.0) {
+            recuperacao++;
+        }
+        else {
+            reprovados++;
+        }
+    }
+
+    printf("\n===ESTATISTICA DA TURMA===\n Total de alunos: %d\n Aprovados: %d\n De recuperacao: %d\n Reprovados: %d\n\n", total_alunos, aprovados, recuperacao, reprovados);   
+}
+
+bool deseja_sair_busca(){
+    int opcao_sair;
+
+    printf("Deseja sair da barra de busca? 1 para S e 2 para N: ");
+    int lido2 = scanf("%d", &opcao_sair);
+            
+    if (lido2 != 1) {
+        printf("Entrada invalida! Digite apenas numeros.\n");
+        while (getchar() != '\n');
+        return false;
+    }
+
+    if(opcao_sair < 1 || opcao_sair > 2){
+        printf("ALERTA: Digite apenas 1 ou 2.\n\n");
+        return false;
+    }
+
+    return (opcao_sair == 1);
+}
+
 
 int main(){
     int opcao_usuario;
@@ -130,29 +175,11 @@ int main(){
                     );
                 } 
                 
-                int opcao_sair;
-
-                printf("Deseja sair de barra de busca? 1 para S e 2 para N: ");
-                int lido2 = scanf("%d", &opcao_sair);
-                
-                if (lido2 != 1) {
-                    printf("Entrada invalida! Digite apenas numeros.\n");
-                    while (getchar() != '\n');
-                    continue;
-                }
-
-                if(opcao_sair < 1 || opcao_sair > 2){
-                    printf("ALERTA: Não é permitido caracteres especiais ou numeros menores de 1 ou acima de 5.\n\n");
-                    continue;
-                }
-
-                if(opcao_sair == 1){
+                if(deseja_sair_busca()){
+                    printf("Saindo da barra de pesquisa...\n");
                     break;
                 }
-                else {
-                    continue;
-                }
-                
+
             }
 
         }
