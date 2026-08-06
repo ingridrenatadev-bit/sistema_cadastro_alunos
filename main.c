@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
+
 #define MAX_ALUNOS 30
 struct Aluno {
 
@@ -58,6 +60,26 @@ int buscar_aluno(char buscar_nome[]){
     return -1;
 }
 
+bool deseja_sair_busca(){
+    int opcao_sair;
+
+        printf("Deseja sair de barra de busca? 1 para S e 2 para N: ");
+        int lido2 = scanf("%d", &opcao_sair);
+                
+            if (lido2 != 1) {
+                printf("Entrada invalida! Digite apenas numeros.\n");
+                while (getchar() != '\n');
+                return false;
+            }
+
+            if(opcao_sair < 1 || opcao_sair > 2){
+                printf("ALERTA: Digite apenas 1 ou 2.\n\n");
+                return false;
+            }
+
+    return (opcao_sair == 1);
+}
+
 
 int main(){
     int opcao_usuario;
@@ -107,9 +129,9 @@ int main(){
 
         if (opcao_usuario == 3){//implementar uma funcionalidade se o usuário desejar procurar outro estudante depois
 
-            char continuar_busca = "s";
+            char continuar_busca = 's';
 
-            while (continuar_busca == "s"){
+            while (continuar_busca == 's'){
                 char buscar_nome[30];
                 printf("\n\nDigite o nome do aluno que deseja procurar: ");
                 scanf("%s", buscar_nome);
@@ -129,30 +151,11 @@ int main(){
                         calcular_media_individual(lista_alunos[posicao].nota[0], lista_alunos[posicao].nota[1], lista_alunos[posicao].nota[2])
                     );
                 } 
-                
-                int opcao_sair;
 
-                printf("Deseja sair de barra de busca? 1 para S e 2 para N: ");
-                int lido2 = scanf("%d", &opcao_sair);
-                
-                if (lido2 != 1) {
-                    printf("Entrada invalida! Digite apenas numeros.\n");
-                    while (getchar() != '\n');
-                    continue;
-                }
-
-                if(opcao_sair < 1 || opcao_sair > 2){
-                    printf("ALERTA: Não é permitido caracteres especiais ou numeros menores de 1 ou acima de 5.\n\n");
-                    continue;
-                }
-
-                if(opcao_sair == 1){
+                if(deseja_sair_busca()){
+                    printf("Saindo da barra de pesquisa...");
                     break;
                 }
-                else {
-                    continue;
-                }
-                
             }
 
         }
