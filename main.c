@@ -109,8 +109,7 @@ int main(){
 
             char continuar_busca = "s";
 
-            while (continuar_busca == "s")
-            {
+            while (continuar_busca == "s"){
                 char buscar_nome[30];
                 printf("\n\nDigite o nome do aluno que deseja procurar: ");
                 scanf("%s", buscar_nome);
@@ -129,7 +128,31 @@ int main(){
                         lista_alunos[posicao].nota[2],
                         calcular_media_individual(lista_alunos[posicao].nota[0], lista_alunos[posicao].nota[1], lista_alunos[posicao].nota[2])
                     );
-                }   
+                } 
+                
+                int opcao_sair;
+
+                printf("Deseja sair de barra de busca? 1 para S e 2 para N: ");
+                int lido2 = scanf("%d", &opcao_sair);
+                
+                if (lido2 != 1) {
+                    printf("Entrada invalida! Digite apenas numeros.\n");
+                    while (getchar() != '\n');
+                    continue;
+                }
+
+                if(opcao_sair < 1 || opcao_sair > 2){
+                    printf("ALERTA: Não é permitido caracteres especiais ou numeros menores de 1 ou acima de 5.\n\n");
+                    continue;
+                }
+
+                if(opcao_sair == 1){
+                    break;
+                }
+                else {
+                    continue;
+                }
+                
             }
 
         }
